@@ -1,0 +1,30 @@
+
+import './App.css';
+import { Routes, Route } from 'react-router-dom'
+import Layout from './component/Layout';
+import Public from './component/Public';
+import { Login } from './features/auth/Login';
+import RequireAuth from './features/auth/RequireAuth';
+import Welcome from './features/auth/Welcome';
+import UsersList from './features/users/UserList';
+
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        {/* public routes */}
+        <Route index element={<Public />} />
+        <Route path="login" element={<Login />} />
+
+        {/* protected routes */}
+        <Route element={<RequireAuth />}>
+          <Route path="welcome" element={<Welcome />} />
+          <Route path="userList" element={<UsersList />} />
+        </Route>
+      </Route>
+    </Routes>
+  );
+}
+
+export default App;
